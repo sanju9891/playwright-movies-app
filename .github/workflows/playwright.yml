@@ -22,7 +22,6 @@ jobs:
       env:
         MOVIES_USERNAME: ${{ secrets.MOVIES_USERNAME }}
         MOVIES_PASSWORD: ${{ secrets.MOVIES_PASSWORD }}
-        ENV: LOCAL
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:

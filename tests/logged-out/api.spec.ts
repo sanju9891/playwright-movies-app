@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { TMDB_API_BASE_URL } from '../../config/tmdb';
+import { TMDB_API_BASE_URL } from '../../movies-app/config/tmdb';
 
 test.use({ baseURL: TMDB_API_BASE_URL });
 
