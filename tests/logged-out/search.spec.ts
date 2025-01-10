@@ -43,7 +43,7 @@ test('search for non-existent-movie', async ({ page }) => {
     await page.getByRole('button', { name: 'Home' }).click();
 
     // Verify that the URL is the homepage URL with the default category and page
-    await expect.soft(page).toHaveURL('/movies?category=Popular&page=1');
+    await expect.soft(page).toHaveURL('/?category=Popular&page=1');
   });
 });
 

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('Avengers: Infinity is the first top rated movie', async ({
   page,
 }, testInfo) => {
-  await page.goto('/movies?category=Top+Rated&page=1');
+  await page.goto('/?category=Top+Rated&page=1');
 
   const firstMovie = page.getByRole('listitem', { name: 'movie' }).first();
   const firstMovieRating = page.getByLabel('rating').first();
@@ -45,7 +45,7 @@ test('Avengers: Infinity is the first top rated movie', async ({
 });
 
 test('dynamic content for first upcoming movie', async ({ page }, testInfo) => {
-  await page.goto('/movies?category=Upcoming&page=1');
+  await page.goto('/?category=Upcoming&page=1');
 
   const firstMovie = page.getByRole('listitem', { name: 'movie' }).first();
   const firstMovieRating = page.getByLabel('rating').first();

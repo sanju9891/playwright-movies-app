@@ -22,7 +22,7 @@ const NotFound = ({
         <h4 className='subtitle'>{subtitle}</h4>
       </div>
       <NotFoundImage
-        src='/movies/assets/svgs/empty.svg'
+        src='/assets/svgs/empty.svg'
         alt='Not found!' />
       <LinkButton
         href={{
