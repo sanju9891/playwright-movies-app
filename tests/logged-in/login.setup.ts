@@ -3,7 +3,7 @@ import { STORAGE_STATE } from '../../playwright.config';
 
 setup('log user in and verify profile access', async ({ page }) => {
   await page.goto('');
-  await page.getByLabel('Log In').click();
+  await page.getByRole('banner').getByLabel('Log In').click();
 
   // Fill in the username and password fields and submit the form
   await page

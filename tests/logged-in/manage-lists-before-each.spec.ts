@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { addMovie, createList, openLists } from 'tests/helpers/list-utilities';
+import { addMovie, createList, openLists } from '../helpers/list-utilities';
 
 // Before each test, navigate to the base URL, create a list, and open the lists page
 test.beforeEach(async ({ page }) => {

@@ -3,7 +3,7 @@ import path from 'path';
 
 test('sort movies by average votes and original title', async ({ page }) => {
   // Navigate to the movies page with Action genre
-  await page.goto('/movies/genre?id=28&name=Action&page=1');
+  await page.goto('/genre?id=28&name=Action&page=1');
 
   // Get all the movies on the page
   const movies = page.getByRole('listitem', { name: 'movie' });
@@ -90,7 +90,7 @@ test('sort by with api mocking', { tag: '@mocking' }, async ({ page }) => {
   });
 
   // Navigate to the movies page with Action genre
-  await page.goto('/movies/genre?id=28&name=Action&page=1');
+  await page.goto('/genre?id=28&name=Action&page=1');
 
   // Get all the movies on the page
   const movieTitles = page
