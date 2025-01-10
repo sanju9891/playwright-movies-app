@@ -14,11 +14,11 @@ test.describe('Theme Mode Switching', () => {
     page,
   }) => {
     // Click the moon icon to switch to dark mode and assert it has the 'dark' class
-    await page.getByRole('button', { name: '☾' }).click();
+    await page.getByRole('banner').getByRole('button', { name: '☾' }).click();
     await expect.soft(page.locator('body')).toHaveClass(/dark/);
 
     // Click the sun icon to switch back to light mode and assert it has the 'light' class
-    await page.getByRole('button', { name: '☀' }).click();
+    await page.getByRole('banner').getByRole('button', { name: '☀' }).click();
     await expect.soft(page.locator('body')).toHaveClass(/light/);
   });
 
@@ -26,11 +26,11 @@ test.describe('Theme Mode Switching', () => {
     page,
   }) => {
     // Click the toggle switch to switch to dark mode and assert it has the 'dark' class
-    await page.getByText('Toggle Switch').click();
+    await page.getByRole('banner').getByText('Toggle Switch').click();
     await expect.soft(page.locator('body')).toHaveClass(/dark/);
 
     // Click the toggle switch to switch to light mode and assert it has the 'light' class
-    await page.getByText('Toggle Switch').click();
+    await page.getByRole('banner').getByText('Toggle Switch').click();
     await expect.soft(page.locator('body')).toHaveClass(/light/);
   });
 });
