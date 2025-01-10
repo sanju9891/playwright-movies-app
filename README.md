@@ -4,6 +4,7 @@ This repository provides a comprehensive guide to writing Playwright tests, cove
 
 The source code is a demo Movies App built with Next.js and React, utilizing the [The Movie Database (TMDB)](https://www.themoviedb.org/) API for testing purposes. This project is a fork of [next-movies](https://github.com/tastejs/next-movies) and has been customized to meet our specific requirements.
 
+![Playwright Movies App](movies-app-ui-mode.png)
 
 ## Installation 
 
