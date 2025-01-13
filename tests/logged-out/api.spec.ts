@@ -8,7 +8,7 @@ test.describe('movie categories', () => {
     const response = await request.get(`/3/movie/popular`, {
       params: { page: 1 },
     });
-    expect(response).toBeOK();
+    await expect(response).toBeOK();
     const jsonResponse = await response.json();
     const movies = jsonResponse.results;
     // Loops over the popularity and checks they are in the correct order
@@ -23,7 +23,7 @@ test.describe('movie categories', () => {
     const response = await request.get(`/3/movie/top_rated`, {
       params: { page: 1 },
     });
-    expect(response).toBeOK();
+    await expect(response).toBeOK();
     const jsonResponse = await response.json();
     const movies = jsonResponse.results;
     // Loops over the vote averages and checks they are in the correct order
@@ -38,7 +38,7 @@ test.describe('movie categories', () => {
     const response = await request.get(`/3/movie/upcoming`, {
       params: { page: 1 },
     });
-    expect(response).toBeOK();
+    await expect(response).toBeOK();
     const jsonResponse = await response.json();
     const movies = jsonResponse.results;
     // Loops over the release dates and checks they are in the correct order
@@ -54,7 +54,7 @@ test('action genre movies', async ({ request }) => {
   const response = await request.get(`/3/discover/movie`, {
     params: { with_genres: 28, page: 1 },
   }); // genre id for action is 28
-  expect(response).toBeOK();
+  await expect(response).toBeOK();
   const jsonResponse = await response.json();
   // Filters out action movies from the JSON response
   const nonActionMovies = jsonResponse.results.filter(
@@ -67,7 +67,7 @@ test('movie search', async ({ request }) => {
   const response = await request.get(`/3/search/movie`, {
     params: { query: 'Twisters' },
   });
-  expect(response).toBeOK();
+  await expect(response).toBeOK();
   expect(await response.json()).toEqual({
     total_pages: 1,
     total_results: 1,
@@ -91,7 +91,7 @@ test('movie search', async ({ request }) => {
 
 test('movie credits', async ({ request }) => {
   const response = await request.get(`/3/movie/tt12584954/credits`);
-  expect(response).toBeOK();
+  await expect(response).toBeOK();
   expect(await response.json()).toEqual(
     expect.objectContaining({
       cast: expect.arrayContaining([
@@ -124,7 +124,7 @@ test.describe('movie sorting', () => {
     const response = await request.get(`/3/discover/movie`, {
       params: { with_genres: 28, page: 1, sort_by: 'popularity.desc' },
     });
-    expect(response).toBeOK();
+    await expect(response).toBeOK();
     const jsonResponse = await response.json();
     const movies = jsonResponse.results;
     // Loops over the popularity and checks they are in the correct order
@@ -139,7 +139,7 @@ test.describe('movie sorting', () => {
     const response = await request.get(`/3/discover/movie`, {
       params: { with_genres: 28, page: 1, sort_by: 'vote_average.desc' },
     });
-    expect(response).toBeOK();
+    await expect(response).toBeOK();
     const jsonResponse = await response.json();
     const movies = jsonResponse.results;
     // Loops over the vote averages and checks they are in the correct order
@@ -154,7 +154,7 @@ test.describe('movie sorting', () => {
     const response = await request.get(`/3/discover/movie`, {
       params: { with_genres: 28, page: 1, sort_by: 'original_title.asc' },
     });
-    expect(response).toBeOK();
+    await expect(response).toBeOK();
     const jsonResponse = await response.json();
     const movies = jsonResponse.results;
     // Loops over the titles and checks they are in the correct order
@@ -169,7 +169,7 @@ test.describe('movie sorting', () => {
     const response = await request.get(`/3/discover/movie`, {
       params: { with_genres: 28, page: 1, sort_by: 'release_date.desc' },
     });
-    expect(response).toBeOK();
+    await expect(response).toBeOK();
     const jsonResponse = await response.json();
     const movies = jsonResponse.results;
     // Loops over the release dates and checks they are in the correct order
@@ -183,7 +183,7 @@ test.describe('movie sorting', () => {
 
 test('configuration', async ({ request }) => {
   const response = await request.get(`/3/configuration`);
-  expect(response).toBeOK();
+  await expect(response).toBeOK();
   expect(await response.json()).toEqual({
     change_keys: expect.any(Array),
     images: expect.objectContaining({
