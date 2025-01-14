@@ -43,7 +43,7 @@ test('sort movies by average votes and original title', async ({ page }) => {
 
     // Get text content of the first four movies after sorting
     for (let i = 0; i < 4; i++) {
-      movieTitlesArray.push((await movieTitles.nth(i).textContent()) !);
+      const textContent = await movieTitles.nth(i).textContent(); if (textContent) movieTitlesArray.push(textContent);
     }
 
     // Create an attachment to see the text content for movies sorted by original title
