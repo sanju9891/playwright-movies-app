@@ -17,7 +17,7 @@ test('sort movies by average votes and original title', async ({ page }) => {
     // Extracts and parses the number of votes from a list of movie elements.
     const movieVotes = await movies.evaluateAll((movies) =>
       movies
-        .map((movie) => movie.textContent!.match(/★★★★★\s*(\d+(\.\d+)?)/)?.[1])
+        .map((movie) => movie.textContent ? movie.textContent.match(/★★★★★\s*(\d+(\.\d+)?)/)?.[1] : null)
         .filter(Boolean)
         .map((rating) => parseFloat(rating!)),
     );
