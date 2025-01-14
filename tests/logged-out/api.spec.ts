@@ -58,7 +58,7 @@ test('action genre movies', async ({ request }) => {
   const jsonResponse = await response.json();
   // Filters out action movies from the JSON response
   const nonActionMovies = jsonResponse.results.filter(
-    (movie) => !movie.genre_ids.includes(28),
+    (movie: {genre_ids:number[]}) => !movie.genre_ids.includes(28),
   );
   expect(nonActionMovies).toEqual([]);
 });
