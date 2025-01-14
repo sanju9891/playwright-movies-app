@@ -17,9 +17,9 @@ test('sort movies by average votes and original title', async ({ page }) => {
     // Extracts and parses the number of votes from a list of movie elements.
     const movieVotes = await movies.evaluateAll((movies) =>
       movies
-        .map((movie) => movie.textContent.match(/★★★★★\s*(\d+(\.\d+)?)/)?.[1])
+        .map((movie) => movie.textContent!.match(/★★★★★\s*(\d+(\.\d+)?)/)?.[1])
         .filter(Boolean)
-        .map((rating) => parseFloat(rating)),
+        .map((rating) => parseFloat(rating!)),
     );
 
     await test.info().attach('movies list sorted by average votes', {
@@ -34,7 +34,7 @@ test('sort movies by average votes and original title', async ({ page }) => {
   });
 
   await test.step('sort by original title and verify order', async () => {
-    const movieTitlesArray = [];
+    const movieTitlesArray: string[] = [];
     const movieTitles = movies.getByRole('heading');
 
     // Sort movies by original title
@@ -43,7 +43,7 @@ test('sort movies by average votes and original title', async ({ page }) => {
 
     // Get text content of the first four movies after sorting
     for (let i = 0; i < 4; i++) {
-      movieTitlesArray.push(await movieTitles.nth(i).textContent());
+      movieTitlesArray.push((await movieTitles.nth(i).textContent()) !);
     }
 
     // Create an attachment to see the text content for movies sorted by original title

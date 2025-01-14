@@ -17,7 +17,7 @@ test('Avengers: Infinity is the first top rated movie', async ({
   await test.step('Verify movie rating tooltip content', async () => {
     await firstMovieRating.hover();
     const tooltip = page.getByRole('tooltip');
-    const tooltipText = await tooltip.textContent();
+    const tooltipText = await tooltip.textContent() ?? '';
     await expect.soft(tooltip).toContainText(/average rating on/);
 
     // Attach the tooltip text content to the test report
@@ -55,20 +55,20 @@ test('dynamic content for first upcoming movie', async ({ page }, testInfo) => {
 
   // Attach the movie name to the test report
   await testInfo.attach('name of first movie', {
-    body: movieName,
+    body: movieName??'',
     contentType: 'text/markdown',
   });
 
-  await expect.soft(firstMovie).toContainText(movieName);
+  await expect.soft(firstMovie).toContainText(movieName ?? '');
   await expect
     .soft(firstMovie.getByRole('img'))
-    .toHaveAccessibleName(`poster of ${movieName}`);
+    .toHaveAccessibleName(`poster of ${movieName ?? ''}`);
   await expect.soft(firstMovieRating).toHaveAccessibleName('rating');
 
   await test.step('Verify movie rating tooltip content', async () => {
     await firstMovieRating.hover();
     const tooltip = page.getByRole('tooltip');
-    const tooltipText = await tooltip.textContent();
+    const tooltipText = await tooltip.textContent() ?? '';
     await expect.soft(tooltip).toContainText(/average rating on/);
 
     // Attach the tooltip text content to the test report
@@ -82,10 +82,10 @@ test('dynamic content for first upcoming movie', async ({ page }, testInfo) => {
     await firstMovie.click();
     await expect.soft(page).toHaveURL(/id/);
     await expect.soft(page.getByRole('main')).toMatchAriaSnapshot(`
-    - 'heading "${movieName}" [level=1]'
+    - 'heading "${movieName ?? ''}" [level=1]'
     `);
     await expect.soft(page.getByRole('main')).toMatchAriaSnapshot(`
-    - 'heading "${movieName}" [level=1]'
+    - 'heading "${movieName ?? ''}" [level=1]'
     - heading [level=2]
     - heading "The Genres" [level=3]
     - heading "The Synopsis" [level=3]

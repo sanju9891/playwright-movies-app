@@ -18,5 +18,5 @@ test('user can log out', async ({ page }) => {
   await page.getByRole('button', { name: 'Logout' }).click();
 
   // Verify that the login button is visible
-  await expect.soft(page.getByLabel('Log In')).toBeVisible();
+   await expect.soft(page.getByLabel('Log In')).toBeVisible();
 });

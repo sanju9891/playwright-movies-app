@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 
 test('search for "Twisters" movie', async ({ page }) => {
   await page.goto('');
@@ -49,14 +49,11 @@ test('search for non-existent-movie', async ({ page }) => {
 
 /**
  * Searches for a movie using the provided page and movie title.
- *
- * @param {Page} page - The Playwright page object to interact with.
- * @param {string} movie - The title of the movie to search for.
  */
-async function searchForMovie(page, movie) {
+async function searchForMovie(page: Page, movie: string) {
   const searchInput = page.getByPlaceholder('Search for a movie...');
   await test.step(`Search for "${movie}" movie`, async () => {
-    await page.getByRole('search').click();
+    await page.getByRole('banner').getByRole('search').click();
     await searchInput.click();
     await searchInput.fill(movie);
     await searchInput.press('Enter');
