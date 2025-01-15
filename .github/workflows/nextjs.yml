@@ -28,34 +28,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          static_site_generator: next
-      - name: Restore cache
-        uses: actions/cache@v4
-        with:
-          path: movies-app/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/movies-app/package-lock.json', '**/movies-app/yarn.lock') }}-${{ hashFiles('**/movies-app/*.[jt]s', '**/movies-app/*.[jt]sx') }}
-          restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('**/movies-app/package-lock.json', '**/movies-app/yarn.lock') }}-
-      - name: Install dependencies
-        run: npm ci
-        working-directory: ./movies-app
-      - name: Build with Next.js
-        run: npm run build
-        working-directory: ./movies-app
+      - name: Build movies site
+        run: |
+          npm ci
+          npm run build
+        working-directory: movies-app
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v1
         with:
-          path: movies-app/out
+          path: ./build
+
 
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v1
