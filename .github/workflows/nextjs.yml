@@ -42,7 +42,7 @@ jobs:
         run: npm ci
         working-directory: ./movies-app
       - name: Build with Next.js
-        run: npm run next build
+        run: npm run build
         working-directory: ./movies-app
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
