@@ -1,7 +1,7 @@
 import { NextConfig } from 'next'
 
 const config: NextConfig = {  
-  basePath: '/playwright-movies-app',
+  basePath: process.env.BASEPATH,
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
