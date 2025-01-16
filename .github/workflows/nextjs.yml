@@ -33,6 +33,8 @@ jobs:
           npm ci
           npm run build
         working-directory: movies-app
+        env:
+          BASEPATH: /playwright-movies-app
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
