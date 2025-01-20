@@ -40,6 +40,9 @@ Make sure port 3000 is available as the app needs to run on this port. Using a d
 * `npm run build`: production build
 * `npm run start`: start the project
 
+## Wiki
+
+Check out the [wiki](https://github.com/debs-obrien/playwright-movies-app/wiki) for more info on the contents of each folder.
 
 ## License
 
