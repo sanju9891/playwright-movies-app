@@ -18,10 +18,10 @@ export async function createList(
   listDescription: string,
 ) {
   await test.step('create a new list', async () => {
-    await page.getByLabel('User Profile').click();
+    await page.getByRole('button', { name: 'User Profile' }).click();
     await page.getByRole('link', { name: 'Create New List' }).click();
-    await page.getByLabel('Name').fill(listName);
-    await page.getByLabel('Description').fill(listDescription);
+    await page.getByRole('textbox', { name: 'Name' }).fill(listName);
+    await page.getByRole('textbox', { name: 'Description' }).fill(listDescription);
     await page.getByRole('button', { name: 'Continue' }).click();
     // wait until the list was created and we're on its add/remove movies page
     await page.waitForURL(url => url.searchParams.has('listId'));
@@ -40,7 +40,7 @@ export async function createList(
  */
 export async function openLists(page: Page, name: string = 'My Lists') {
   await test.step('open list from menu', async () => {
-    await page.getByLabel('User Profile').click();
+    await page.getByRole('button', { name: 'User Profile' }).click();
     await page.getByRole('link', { name }).click();
     const formattedName = name.toLowerCase().replace(/\s+/g, '-');
     await expect(page).toHaveURL(new RegExp(`/${formattedName}`));
@@ -60,7 +60,7 @@ export async function openLists(page: Page, name: string = 'My Lists') {
  */
 export async function addMovie(page: Page, movieName: string) {
   await test.step('add movie to list', async () => {
-    await page.getByLabel('Add Item').fill(movieName);
+    await page.getByRole('textbox', { name: 'Add Item' }).fill(movieName);
     await page.getByRole('button', { name: movieName }).click();
     await expect(page.getByLabel('movies')).toMatchAriaSnapshot(`
     - list "movies" :
@@ -102,7 +102,7 @@ export async function addImageToList(page: Page, movieName: string) {
     await openLists(page, 'My Lists');
 
     // Verify the movie list has been updated with the text "my favorite movies"
-    await expect(page.getByLabel('movie list').getByRole('link')).toHaveText(
+    await expect(page.getByRole('listitem', { name: 'movie list' }).getByRole('link')).toHaveText(
       /my favorite movies/,
     );
   });
